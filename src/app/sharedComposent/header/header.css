@@ -1,0 +1,89 @@
+
+/* Navbar */
+.custom-navbar {
+  background: linear-gradient(135deg, #172554, #312e81);
+  padding: 18px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Nom */
+.navbar-brand {
+  color: white !important;
+  font-size: 26px;
+  letter-spacing: 1px;
+}
+
+/* Liens */
+.custom-navbar .nav-link {
+  color: #dbeafe !important;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 14px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Survol */
+.custom-navbar .nav-link:hover {
+  color: #38bdf8 !important;
+}
+
+/* Lien actif */
+.custom-navbar .nav-link.active {
+  color: white !important;
+  font-weight: 700;
+}
+
+.custom-navbar .nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  width: 25px;
+  height: 3px;
+  background: #38bdf8;
+  border-radius: 5px;
+}
+
+/* Bouton Contact */
+.btn-contact {
+  background: #38bdf8;
+  color: #172554;
+  border-radius: 25px;
+  padding: 10px 24px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-contact:hover {
+  background: white;
+  color: #312e81;
+  transform: translateY(-2px);
+}
+
+/* Bouton responsive */
+.custom-navbar .navbar-toggler {
+  border: 1px solid white;
+}
+
+.custom-navbar .navbar-toggler-icon {
+  filter: brightness(0) invert(1);
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+  .custom-navbar .navbar-nav {
+    padding-top: 15px;
+    align-items: flex-start !important;
+  }
+
+  .custom-navbar .nav-link {
+    margin: 10px 0;
+  }
+
+  .btn-contact {
+    display: inline-block;
+    margin-top: 10px;
+  }
+}

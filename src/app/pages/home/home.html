@@ -1,0 +1,16 @@
+<div class="container mt-4">
+
+  <h1 class="text-center">{{ title }}</h1>
+
+  <button class="btn btn-primary" (click)="change()">
+    Change Title
+  </button>
+
+  <p *ngIf="enable">
+    Bienvenue dans notre application !
+  </p>
+
+  <!-- Afficher la liste des conférences -->
+  <app-list-conf></app-list-conf>
+
+</div>
