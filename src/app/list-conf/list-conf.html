@@ -1,56 +1,63 @@
-<div class="container py-5">
 
-  <div class="text-center mb-5">
-    <h2 class="fw-bold">Nos conférences</h2>
-    <p class="text-muted">Découvrez nos prochaines conférences et réservez votre place.</p>
+
+<div class="container">
+
+  <div class="conference-header">
+    <h2>Nos conférences</h2>
+    <p>Découvrez nos prochaines conférences et réservez votre place.</p>
   </div>
 
-  <div class="row g-4">
+  <!-- Recherche -->
+  <div class="search-wrapper">
+    <span class="search-icon">🔍</span>
+    <input
+      type="text"
+      class="form-control search-input"
+      placeholder="Rechercher une conférence..."
+      [(ngModel)]="searchTitle">
+  </div>
 
-    <div class="col-md-6 col-lg-3" *ngFor="let conf of conferences">
+<div class="row">
 
-      <div class="card conference-card h-100 shadow-sm">
+  @for (conf of list; track conf.id) {
 
-        <img [src]="conf.picture"
-             class="card-img-top"
-             [alt]="conf.title">
+    @if (!searchTitle ||
+    conf.title.toLowerCase().includes(searchTitle.toLowerCase())) {
 
-        <div class="card-body">
+      <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
 
-          <h5 class="card-title fw-bold">{{ conf.title }}</h5>
+        <div class="card conference-card">
 
-          <p class="text-muted mb-2">
-            <i class="bi bi-calendar-event"></i>
-            {{ conf.date }}
-          </p>
+          <img
+            [src]="conf.picture"
+            class="card-img-top"
+            [alt]="conf.title">
 
-          <p class="text-muted mb-3">
-            <i class="bi bi-geo-alt"></i>
-            {{ conf.address }}
-          </p>
+          <div class="card-body">
 
-          <span *ngIf="conf.available_places > 0"
-                class="badge bg-success">
-            {{ conf.available_places }} places disponibles
-          </span>
+            <h5 class="card-title">
+              {{ conf.title | uppercase }}
+            </h5>
 
-          <span *ngIf="conf.available_places === 0"
-                class="badge bg-danger">
-            Complet
-          </span>
+            <p>📅 {{ conf.date }}</p>
 
-        </div>
+            <p>
+              👥 {{ conf.nbrMax - conf.nbrRevervation }}
+              places disponibles
+            </p>
 
-        <div class="card-footer bg-white border-0">
-          <button class="btn btn-primary w-100"
-                  [disabled]="conf.available_places === 0">
-            Voir détails
-          </button>
+            <button
+              class="btn btn-primary details-btn"
+              [disabled]="conf.nbrMax == conf.nbrRevervation"
+              (click)="participate(conf)">
+              Voir détails
+            </button>
+
+          </div>
         </div>
 
       </div>
+    }
+  }
 
-    </div>
-
-  </div>
 </div>

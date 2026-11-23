@@ -1,16 +1,42 @@
-<div class="container mt-4">
+<app-list-conf></app-list-conf>
+<h2>Liste des conférences</h2>
 
-  <h1 class="text-center">{{ title }}</h1>
+<input
+  type="text"
+  name="search"
+  class="form-control"
+  placeholder="Search by title..."
+  [(ngModel)]="searchTitle"
+>
 
-  <button class="btn btn-primary" (click)="change()">
-    Change Title
-  </button>
+<h1>{{ searchTitle }}</h1>
 
-  <p *ngIf="enable">
-    Bienvenue dans notre application !
-  </p>
+<table class="table">
+  <thead>
+  <tr>
+    <th>Titre</th>
+    <th>Date</th>
+    <th>Available places</th>
+    <th>Action</th>
+  </tr>
+  </thead>
 
-  <!-- Afficher la liste des conférences -->
-  <app-list-conf></app-list-conf>
-
-</div>
+  <tbody>
+    @for (conf of list; track conf.title) {
+      @if (searchTitle === conf.title || searchTitle==null ) {
+        <tr>
+          <td>{{ conf.title || uppercase }}</td>
+          <td>{{ conf.date }}</td>
+          <td>{{ conf.nbrMax - conf.nbrRevervation }}</td>
+          <td>
+            <button
+              [disabled]="conf.nbrMax == conf.nbrRevervation"
+              (click)="participate(conf)">
+              Participate
+            </button>
+          </td>
+        </tr>
+      }
+    }
+  </tbody>
+</table>
