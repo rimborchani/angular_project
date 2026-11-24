@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ListConf } from '../list-conf/list-conf';
 import { ProfilUtilisateur } from '../profil-utilisateur/profil-utilisateur';
+import { Notifications } from '../notifications/notifications';
+import { ListeAmis } from '../liste-amis/liste-amis';
 
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, ListConf, FormsModule, ProfilUtilisateur],
+  imports: [CommonModule, ListConf, FormsModule, ProfilUtilisateur, Notifications, ListeAmis],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

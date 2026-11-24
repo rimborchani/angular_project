@@ -1,1 +1,69 @@
-<p>notifications works!</p>
+
+<div class="notifications-container">
+
+  <!-- HEADER -->
+  <div class="notifications-header">
+    <div>
+      <h2>Mes notifications</h2>
+      <p>Consultez toutes vos notifications.</p>
+    </div>
+
+    <button class="notification-toggle" (click)="afficher()">
+      <span class="bell">🔔</span>
+      <span class="notification-count" *ngIf="nombreNotifications > 0">
+        {{ nombreNotifications }}
+      </span>
+    </button>
+  </div>
+
+  <!-- LISTE DES NOTIFICATIONS -->
+  <div class="notifications-card" *ngIf="afficherNotifications">
+
+    <div class="card-header">
+      <h3>Notifications récentes</h3>
+      <span>{{ nombreNotifications }} non lue(s)</span>
+    </div>
+
+    <div class="notification-list">
+
+      <div
+        class="notification-item"
+        *ngFor="let notif of list"
+        [class.unread]="!notif.lu"
+      >
+
+        <div class="notification-icon">
+          <span *ngIf="!notif.lu">🔵</span>
+          <span *ngIf="notif.lu">✓</span>
+        </div>
+
+        <div class="notification-content">
+          <p>{{ notif.message }}</p>
+          <small>{{ notif.date }}</small>
+        </div>
+
+        <button
+          *ngIf="!notif.lu"
+          class="read-button"
+          (click)="marquerCommeLu(notif)"
+        >
+          Marquer comme lu
+        </button>
+
+        <span *ngIf="notif.lu" class="read-label">
+          Lu
+        </span>
+
+      </div>
+
+      <!-- AUCUNE NOTIFICATION -->
+      <div class="empty-notifications" *ngIf="list.length === 0">
+        <span>🔔</span>
+        <p>Aucune notification pour le moment.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

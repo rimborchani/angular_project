@@ -1,0 +1,272 @@
+
+.amis-container {
+  padding: 35px;
+  background: #f5f7fc;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* ==============================
+   HEADER
+============================== */
+
+.amis-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 35px;
+}
+
+.amis-header h2 {
+  font-size: 28px;
+  color: #263445;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.amis-header p {
+  color: #8792a5;
+  font-size: 14px;
+}
+
+.amis-count {
+  background: #e8edff;
+  color: #4563d8;
+  padding: 11px 20px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* ==============================
+   GRILLE DES AMIS
+============================== */
+
+.amis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+/* ==============================
+   CARTE AMI
+============================== */
+
+.ami-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e9edf5;
+  border-radius: 18px;
+  padding: 30px 22px;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(35, 55, 90, 0.05);
+  transition: all 0.3s ease;
+}
+
+/* Petite décoration en haut */
+.ami-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #4563d8, #8297f5);
+}
+
+.ami-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 12px 30px rgba(35, 55, 90, 0.12);
+  border-color: #d9e0ff;
+}
+
+/* ==============================
+   PHOTO DE PROFIL
+============================== */
+
+.ami-photo {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: 5px auto 20px;
+  padding: 5px;
+  border-radius: 50%;
+  background: #e8edff;
+  transition: 0.3s ease;
+}
+
+.ami-card:hover .ami-photo {
+  background: #4563d8;
+  transform: scale(1.04);
+}
+
+.ami-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid white;
+  display: block;
+}
+
+/* Statut en ligne */
+.status-dot {
+  position: absolute;
+  bottom: 7px;
+  right: 5px;
+  width: 17px;
+  height: 17px;
+  background: #22c55e;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+}
+
+/* ==============================
+   INFORMATIONS
+============================== */
+
+.ami-info {
+  margin-bottom: 22px;
+}
+
+.ami-info h3 {
+  color: #263445;
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: 9px;
+}
+
+.ami-info p {
+  color: #8993a3;
+  font-size: 13px;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ==============================
+   BOUTON PROFIL
+============================== */
+
+.btn-profile {
+  display: block;
+  width: 100%;
+  background: linear-gradient(120deg, #4563d8, #647fe9);
+  color: white;
+  border: none;
+  padding: 13px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-profile:hover {
+  background: #304bb5;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(69, 99, 216, 0.25);
+}
+
+/* ==============================
+   LISTE VIDE
+============================== */
+
+.empty-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 50px;
+  color: #8993a3;
+  font-size: 16px;
+  background: white;
+  border-radius: 15px;
+  border: 1px dashed #dce2ef;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 768px) {
+
+  .amis-container {
+    padding: 20px;
+  }
+
+  .amis-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .ami-card {
+    padding: 25px 15px;
+  }
+}
+
+@media (max-width: 500px) {
+
+  .amis-container {
+    padding: 15px;
+  }
+
+  .amis-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .amis-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Conteneur principal */
+.amis-container {
+  width: 100%;
+  min-height: auto;
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+/* Liste des cartes */
+.amis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 200px));
+  gap: 20px;
+  justify-content: start;
+  margin-top: 25px;
+}
+
+/* Cartes */
+.ami-card {
+  width: 200px;
+  min-height: 230px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+/* Image */
+.ami-photo {
+  width: 75px;
+  height: 75px;
+  margin: 10px auto;
+}
+
+/* Informations */
+.ami-info {
+  margin-bottom: 12px;
+}
+
+.ami-info h3 {
+  margin: 8px 0 5px;
+}
+
+.ami-info p {
+  margin: 0;
+}
+
+/* Bouton */
+.btn-profile {
+  width: 100%;
+  margin-top: 10px;
+}

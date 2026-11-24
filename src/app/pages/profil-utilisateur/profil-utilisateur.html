@@ -1,37 +1,104 @@
 <div class="profile-container">
 
+  <!-- HEADER -->
   <div class="profile-header">
-    <h2>Mon profil</h2>
-    <p>Consultez vos informations personnelles.</p>
-  </div>
-
-  <div *ngFor="let p of list" class="profile-card">
-
-    <div class="profile-photo">
-      <img [src]="p.photo" [alt]="p.nom">
+    <div>
+      <h2>Mon profil</h2>
+      <p>Consultez et gérez vos informations personnelles.</p>
     </div>
 
-    <div class="profile-info">
+    <span class="profile-status">
+      <span class="status-dot"></span>
+      Compte actif
+    </span>
+  </div>
 
-      <h3>Bienvenue {{ p.nom }} !</h3>
+  <!-- PROFILE CARD -->
+  @for (p of list; track p.id) {
 
-      <div class="info-item">
-        <strong>Nom complet :</strong>
-        <span>{{ p.nom }}</span>
+    <div class="profile-card">
+
+      <!-- BANNER -->
+      <div class="profile-banner">
+        <div class="banner-decoration"></div>
       </div>
 
-      <div class="info-item">
-        <strong>Email :</strong>
-        <span>{{ p.email }}</span>
-      </div>
+      <!-- PROFILE CONTENT -->
+      <div class="profile-content">
 
-      <div class="info-item">
-        <strong>ID :</strong>
-        <span>{{ p.id }}</span>
-      </div>
+        <!-- PHOTO -->
+        <div class="profile-photo">
+          <img
+            [src]="p.photo || 'assets/images/user.jpg'"
+            alt="Photo utilisateur"
+            class="profile-image">
+        </div>
 
+        <!-- NAME -->
+        <div class="profile-identity">
+          <h3>{{ p.nom }}</h3>
+          <p>
+            <span class="verified-icon">✓</span>
+            Membre de la plateforme
+          </p>
+        </div>
+
+        <div class="profile-divider"></div>
+
+        <!-- INFORMATION -->
+        <div class="information-section">
+          <h4>Informations personnelles</h4>
+
+          <div class="information-grid">
+
+            <div class="info-box">
+              <div class="info-icon">👤</div>
+              <div>
+                <span>Nom complet</span>
+                <strong>{{ p.nom }}</strong>
+              </div>
+            </div>
+
+            <div class="info-box">
+              <div class="info-icon">✉️</div>
+              <div>
+                <span>Adresse email</span>
+                <strong>{{ p.email }}</strong>
+              </div>
+            </div>
+
+
+
+            <div class="info-box">
+              <div class="info-icon">🔒</div>
+              <div>
+                <span>Statut du compte</span>
+                <strong class="active-text">Actif</strong>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="profile-footer">
+          <div>
+            <span class="footer-icon">ℹ️</span>
+            Vos informations personnelles sont affichées ici.
+          </div>
+
+          <button class="edit-btn">
+            ✏️ Modifier mon profil
+          </button>
+        </div>
+
+      </div>
     </div>
 
-  </div>
+  } @empty {
+    <div class="empty-profile">
+      <p>Aucune information de profil disponible.</p>
+    </div>
+  }
 
 </div>

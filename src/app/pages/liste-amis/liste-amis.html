@@ -1,1 +1,48 @@
-<p>liste-amis works!</p>
+<div class="amis-container">
+
+  <!-- HEADER -->
+  <header class="amis-header">
+    <div class="amis-header-text">
+      <h2>Mes amis</h2>
+      <p>Retrouvez et consultez la liste de vos amis.</p>
+    </div>
+
+    <span class="amis-count">
+      <span class="count-number">{{ list.length }}</span>
+      <span class="count-label">amis</span>
+    </span>
+  </header>
+
+  <!-- LISTE DES AMIS -->
+  <div class="amis-grid">
+    @for (ami of list; track ami.id) {
+
+      <article class="ami-card">
+
+        <div class="ami-photo">
+          <img [src]="ami.photo" [alt]="ami.nom">
+          <span class="status-dot" title="En ligne"></span>
+        </div>
+
+        <div class="ami-info">
+          <h3>{{ ami.nom }}</h3>
+          <p>{{ ami.email }}</p>
+        </div>
+
+        <button class="btn-profile">
+          <span>Voir le profil</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </button>
+
+      </article>
+    } @empty {
+      <div class="empty-message">
+        <div class="empty-icon">👥</div>
+        <p>Aucun ami trouvé.</p>
+      </div>
+    }
+  </div>
+
+</div>
