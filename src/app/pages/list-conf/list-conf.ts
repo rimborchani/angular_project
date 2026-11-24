@@ -49,6 +49,7 @@ export class ListConf {
     ];
   }
   uppercase: string;
+  conf: ListConf;
 
 
   get filteredList() {

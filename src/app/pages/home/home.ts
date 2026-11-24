@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListConf } from '../../list-conf/list-conf';
+
 import { FormsModule } from '@angular/forms';
+import { ListConf } from '../list-conf/list-conf';
+import { ProfilUtilisateur } from '../profil-utilisateur/profil-utilisateur';
 
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, ListConf, FormsModule],
+  imports: [CommonModule, ListConf, FormsModule, ProfilUtilisateur],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -19,7 +21,7 @@ export class Home {
   ngOnInit() {
     this.list = [
       {
-        id:2,
+        id: 2,
         title: 'conference angular',
         description: 'web  ',
         date: '23/11/2026',
@@ -30,7 +32,7 @@ export class Home {
       },
 
       {
-        id:3,
+        id: 3,
         title: 'conference react',
         description: 'web  dev conference ',
         date: '23/11/2026',
@@ -40,7 +42,7 @@ export class Home {
           'https://tse4.mm.bing.net/th/id/OIP.llTtOkHCYu9yuqFY2A3CFQHaFL?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
       },
       {
-        id:5,
+        id: 5,
         title: 'conference react',
         description: 'web  dev conference ',
         date: '25/11/2026',
@@ -48,7 +50,7 @@ export class Home {
         nbrRevervation: 5,
         picture:
           'https://tse4.mm.bing.net/th/id/OIP.llTtOkHCYu9yuqFY2A3CFQHaFL?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-      }
+      },
     ];
   }
 

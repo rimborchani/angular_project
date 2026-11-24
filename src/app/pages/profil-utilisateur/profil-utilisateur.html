@@ -1,0 +1,37 @@
+<div class="profile-container">
+
+  <div class="profile-header">
+    <h2>Mon profil</h2>
+    <p>Consultez vos informations personnelles.</p>
+  </div>
+
+  <div *ngFor="let p of list" class="profile-card">
+
+    <div class="profile-photo">
+      <img [src]="p.photo" [alt]="p.nom">
+    </div>
+
+    <div class="profile-info">
+
+      <h3>Bienvenue {{ p.nom }} !</h3>
+
+      <div class="info-item">
+        <strong>Nom complet :</strong>
+        <span>{{ p.nom }}</span>
+      </div>
+
+      <div class="info-item">
+        <strong>Email :</strong>
+        <span>{{ p.email }}</span>
+      </div>
+
+      <div class="info-item">
+        <strong>ID :</strong>
+        <span>{{ p.id }}</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
