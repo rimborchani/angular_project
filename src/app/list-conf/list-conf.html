@@ -1,15 +1,16 @@
 
-
 <div class="container">
 
+  <!-- HEADER -->
   <div class="conference-header">
     <h2>Nos conférences</h2>
     <p>Découvrez nos prochaines conférences et réservez votre place.</p>
   </div>
 
-  <!-- Recherche -->
+  <!-- RECHERCHE -->
   <div class="search-wrapper">
     <span class="search-icon">🔍</span>
+
     <input
       type="text"
       class="form-control search-input"
@@ -17,47 +18,104 @@
       [(ngModel)]="searchTitle">
   </div>
 
-<div class="row">
+  <!-- LISTE DES CONFERENCES -->
+  <div class="row g-4">
 
-  @for (conf of list; track conf.id) {
+    @for (conf of list; track conf.id) {
 
-    @if (!searchTitle ||
-    conf.title.toLowerCase().includes(searchTitle.toLowerCase())) {
+      @if (searchTitle == null ||
+      searchTitle.trim() === '' ||
+      conf.title.toLowerCase().includes(searchTitle.trim().toLowerCase())) {
 
-      <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+        <div class="col-lg-4 col-md-6 col-sm-12">
 
-        <div class="card conference-card">
+          <div class="card conference-card">
 
-          <img
-            [src]="conf.picture"
-            class="card-img-top"
-            [alt]="conf.title">
+            <img
+              [src]="conf.picture"
+              class="card-img-top"
+              [alt]="conf.title">
 
-          <div class="card-body">
+            <div class="card-body">
 
-            <h5 class="card-title">
-              {{ conf.title | uppercase }}
-            </h5>
+              <h5 class="card-title">
+                {{ conf.title | uppercase }}
+              </h5>
 
-            <p>📅 {{ conf.date }}</p>
+              <p class="conference-info">
+                📅 {{ conf.date }}
+              </p>
 
-            <p>
-              👥 {{ conf.nbrMax - conf.nbrRevervation }}
-              places disponibles
-            </p>
+              <p class="conference-info">
+                👥 {{ conf.nbrRevervation }} participants inscrits
+              </p>
 
-            <button
-              class="btn btn-primary details-btn"
-              [disabled]="conf.nbrMax == conf.nbrRevervation"
-              (click)="participate(conf)">
-              Voir détails
-            </button>
+              <div class="availability">
 
+                <span
+                  class="availability-badge"
+                  [ngClass]="{
+                    'badge-green': getRemaining(conf) >= 10,
+                    'badge-orange': getRemaining(conf) > 0 && getRemaining(conf) < 10,
+                    'badge-red': getRemaining(conf) === 0
+                  }">
+
+                  👥 {{ getRemaining(conf) }} places disponibles
+
+                </span>
+
+              </div>
+
+              <button
+                class="btn details-btn"
+                [ngClass]="{
+                  'btn-green': getRemaining(conf) >= 10,
+                  'btn-orange': getRemaining(conf) > 0 && getRemaining(conf) < 10,
+                  'btn-red': getRemaining(conf) === 0
+                }"
+                [disabled]="getRemaining(conf) === 0"
+                (click)="participate(conf)">
+
+                @if (getRemaining(conf) === 0) {
+                  Complet
+                } @else {
+                  Participer
+                }
+
+              </button>
+
+            </div>
           </div>
+
         </div>
 
+      }
+
+    } @empty {
+
+      <div class="col-12">
+        <div class="empty-message">
+          <span>🔍</span>
+          <h4>Aucune conférence enregistrée</h4>
+          <p>Il n'y a aucune conférence dans la liste.</p>
+        </div>
       </div>
+
     }
+
+  </div>
+
+  <!-- MESSAGE SI AUCUN RESULTAT DE RECHERCHE -->
+  @if (list.length > 0 && !list.some(conf =>
+  searchTitle.trim() === '' ||
+  conf.title.toLowerCase().includes(searchTitle.trim().toLowerCase()))) {
+
+    <div class="empty-message">
+      <span>🔍</span>
+      <h4>Aucune conférence trouvée</h4>
+      <p>Essayez avec un autre titre de conférence.</p>
+    </div>
+
   }
 
 </div>

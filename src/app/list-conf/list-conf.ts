@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-list-conf',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,NgClass],
   templateUrl: './list-conf.html',
   styleUrl: './list-conf.css',
 })
 export class ListConf {
   list: Conference[];
-  searchTitle: string;
+  searchTitle: string='';
   constructor() {}
   ngOnInit() {
   this.list = [
@@ -49,8 +49,22 @@ export class ListConf {
     ];
   }
   uppercase: string;
+
+
+  get filteredList() {
+    return this.list.filter(conf =>
+      conf.title.toLowerCase().includes(
+        this.searchTitle.trim().toLowerCase()
+      )
+    );
+  }
   participate(conf: Conference) {
     conf.nbrRevervation++;
+  }
+
+  getRemaining(conf: any) {
+    return Math.max(0, conf.nbrMax - conf.nbrRevervation);
+
   }
 }
 

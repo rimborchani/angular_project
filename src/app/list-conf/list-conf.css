@@ -6,7 +6,7 @@
 .container {
   max-width: 1400px;
   margin: 45px auto;
-  padding: 25px;
+  padding: 30px;
   min-height: 100vh;
   background-color: #f8faff;
 }
@@ -31,10 +31,8 @@
 .conference-header p {
   color: #77849a;
   font-size: 17px;
-  margin-top: 10px;
 }
 
-/* Petite décoration sous le titre */
 .conference-header h2::after {
   content: "";
   display: block;
@@ -46,7 +44,7 @@
 }
 
 /* ==============================
-   BARRE DE RECHERCHE
+   RECHERCHE
 ============================== */
 
 .search-wrapper {
@@ -62,7 +60,6 @@
   transform: translateY(-50%);
   font-size: 19px;
   z-index: 2;
-  color: #3157a4;
 }
 
 .search-input {
@@ -70,62 +67,53 @@
   padding: 12px 20px 12px 52px;
   border: 1px solid #e0e7f2;
   border-radius: 30px;
-  background-color: white;
+  background: white;
   font-size: 15px;
   color: #243b63;
-  box-shadow: 0 5px 20px rgba(36, 59, 99, 0.06);
-  transition: all 0.3s ease;
-}
-
-.search-input::placeholder {
-  color: #a0aabc;
+  box-shadow: 0 5px 20px rgba(36,59,99,0.06);
+  transition: 0.3s ease;
 }
 
 .search-input:focus {
   outline: none;
   border-color: #3157a4;
-  box-shadow: 0 0 0 4px rgba(49, 87, 164, 0.12);
+  box-shadow: 0 0 0 4px rgba(49,87,164,0.12);
 }
 
 /* ==============================
-   CARTES DES CONFERENCES
+   CARTES
 ============================== */
 
 .conference-card {
   height: 100%;
   border: none;
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
-  background-color: white;
-  box-shadow: 0 5px 20px rgba(36, 59, 99, 0.08);
-  transition: all 0.35s ease;
-  position: relative;
+  background: white;
+  box-shadow: 0 5px 20px rgba(36,59,99,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .conference-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(36, 59, 99, 0.16);
+  transform: translateY(-7px);
+  box-shadow: 0 12px 30px rgba(36,59,99,0.15);
 }
 
-/* ==============================
-   IMAGE
-============================== */
+/* IMAGE */
 
 .conference-card img {
   width: 100%;
   height: 220px;
   object-fit: cover;
   display: block;
-  transition: transform 0.5s ease;
+  transition: transform 0.4s ease;
 }
 
 .conference-card:hover img {
-  transform: scale(1.06);
+  transform: scale(1.04);
 }
 
-/* ==============================
-   CONTENU DE LA CARTE
-============================== */
+/* CONTENU */
 
 .conference-card .card-body {
   padding: 23px;
@@ -142,15 +130,10 @@
   margin-bottom: 18px;
 }
 
-/* Date et informations */
-
-.conference-card .card-body p {
+.conference-info {
   color: #718096;
   font-size: 14px;
   margin-bottom: 14px;
-  display: flex;
-  align-items: center;
-  gap: 9px;
 }
 
 /* ==============================
@@ -158,46 +141,108 @@
 ============================== */
 
 .availability {
-  margin-top: 5px;
-  margin-bottom: 22px;
+  margin: 8px 0 22px;
 }
 
-.availability .badge {
+.availability-badge {
+  display: inline-block;
   padding: 8px 12px;
-  border-radius: 7px;
+  border-radius: 8px;
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.2px;
+  font-weight: 700;
+}
+
+.badge-green {
+  background: #e5f5eb;
+  color: #198754;
+}
+
+.badge-orange {
+  background: #fff1dc;
+  color: #d97706;
+}
+
+.badge-red {
+  background: #fde8e8;
+  color: #dc3545;
 }
 
 /* ==============================
-   BOUTON DETAILS
+   BOUTONS DYNAMIQUES
 ============================== */
 
 .details-btn {
   width: 100%;
   margin-top: auto;
-  padding: 12px;
+  padding: 13px;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(135deg, #3157a4, #456dc0);
-  color: white;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: all 0.3s ease;
+  color: white !important;
+  font-size: 15px;
+  font-weight: 700;
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
+
+/* VERT : 10 places ou plus */
+
+.details-btn.btn-green,
+.details-btn.btn-green:hover {
+  background: #198754;
+}
+
+/* ORANGE : de 1 à 9 places */
+
+.details-btn.btn-orange,
+.details-btn.btn-orange:hover {
+  background: #f39c12;
+}
+
+/* ROUGE : aucune place */
+
+.details-btn.btn-red,
+.details-btn.btn-red:hover {
+  background: #dc3545;
+}
+
+/* SURVOL */
 
 .details-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #203d7a, #3157a4);
+  filter: brightness(0.90);
   transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(49, 87, 164, 0.25);
 }
 
+/* BOUTON COMPLET */
+
 .details-btn:disabled {
-  background: #8da2c8;
-  color: white;
+  opacity: 0.85;
   cursor: not-allowed;
+  transform: none;
+}
+
+/* ==============================
+   AUCUN RESULTAT
+============================== */
+
+.empty-message {
+  text-align: center;
+  padding: 55px 20px;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 5px 20px rgba(36,59,99,0.06);
+}
+
+.empty-message span {
+  font-size: 40px;
+}
+
+.empty-message h4 {
+  color: #243b63;
+  margin-top: 15px;
+  font-weight: 700;
+}
+
+.empty-message p {
+  color: #77849a;
 }
 
 /* ==============================
